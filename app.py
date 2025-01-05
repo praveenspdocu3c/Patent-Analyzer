@@ -2163,7 +2163,7 @@ def extract_paragraphs_with_numbers(pdf_path: str):
         paragraphs.append({'Paragraph ': paragraph_number, 'text': paragraph_text})  
   
     document.close()  
-    st.write(paragraphs)  
+    # st.write(paragraphs)  
   
     return paragraphs  
 
