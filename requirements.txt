@@ -4,6 +4,7 @@ python-dotenv
 pandas
 streamlit
 python-docx
+tiktoken
 azure-ai-formrecognizer
 azure-core
 docx2pdf
