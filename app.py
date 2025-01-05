@@ -29,7 +29,7 @@ from azure.storage.blob import BlobServiceClient  # type: ignore
 import tiktoken  
   
 # Define your connection string and container name  
-connection_string = "DefaultEndpointsProtocol=https;AccountName=patent;AccountKey=F8W2RDEJMD5kJ3elvulDyz6XJlYBWp4K3WY4IHhTHKfW+tG/HKTVKmzZS5y0J6GgWFp1uBKImwvs+ASthawnOA==;EndpointSuffix=core.windows.net"  
+connection_string = "DefaultEndpointsProtocol=https;AccountName=patent1;AccountKey=ME5v95i9pip/670ZodU1zFZ9uHHLbI1N4yUv4fJm64vqfytww6bvfpC6v6wchWbhgDLYNO3xD19J+ASt5sLkKw==;EndpointSuffix=core.windows.net"  
 container_name = "patent"  
   
 # Initialize the BlobServiceClient  
