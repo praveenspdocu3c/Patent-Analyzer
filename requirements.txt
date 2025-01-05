@@ -10,5 +10,6 @@ docx2pdf
 regex
 jsonschema
 pypandoc==1.14  
+pypdf
 PyPDF2
 nltk
