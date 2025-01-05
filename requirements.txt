@@ -8,6 +8,7 @@ azure-ai-formrecognizer
 azure-core
 docx2pdf
 regex
+azure-storage-blob  
 jsonschema
 pypandoc==1.14  
 pypdf
