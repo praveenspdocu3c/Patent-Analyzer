@@ -90,7 +90,7 @@ azure_endpoint = st.secrets["AZURE_OPENAI_ENDPOINT"]
 api_key = st.secrets["AZURE_OPENAI_API_KEY"]
 
 api_version = "2024-10-01-preview"
-model = "gpt-4o-mini" 
+model = "gpt-4o-mini"  
 
 client = AzureOpenAI(  
     azure_endpoint=azure_endpoint,  # Pull from environment  
@@ -407,7 +407,7 @@ def call_api_with_retries(messages):
     for attempt in range(max_retries):  
         try:  
             response = client.chat.completions.create(  
-                model="GPT-4-Omni", messages=messages, temperature=0.2  
+                model="gpt-4o-mini", messages=messages, temperature=0.2  
             )  
             return response  
         except Exception as e:  
@@ -548,7 +548,7 @@ def call_llm_api(messages):
     """Call the LLM API and handle the response."""  
     try:  
         response = client.chat.completions.create(  
-            model="GPT-4-Omni", messages=messages, temperature=0.2  
+            model="gpt-4o-mini", messages=messages, temperature=0.2  
         )  
         return response.choices[0].message.content.strip()  
     except Exception as e:  
@@ -682,7 +682,7 @@ def extract_details_from_filed_application(filed_application_text, foundational_
         #     return None
 
         response = client.chat.completions.create(  
-            model="GPT-4-Omni", messages=messages, temperature=0.2  
+            model="gpt-4o-mini", messages=messages, temperature=0.2  
         )  
   
         content = response.choices[0].message.content.strip()  
@@ -767,7 +767,7 @@ def extract_and_modify_filed_application(filed_application_details, pending_clai
     # Call OpenAI API for extracting and modifying filed application details  
     try:  
         response = client.chat.completions.create(  
-            model="GPT-4-Omni", messages=messages, temperature=0.2  
+            model="gpt-4o-mini", messages=messages, temperature=0.2  
         )  
           
         # Extract the response content  
@@ -1073,7 +1073,7 @@ def analyze_filed_application(extracted_details, foundational_claim, dependent_c
     for attempt in range(max_attempts):  
         try:  
             response = client.chat.completions.create(  
-                model="GPT-4-Omni", messages=messages, temperature=0.3, max_tokens=8192  
+                model="gpt-4o-mini", messages=messages, temperature=0.3, max_tokens=8192  
             )  
             # analysis_output = response.choices[0].message.content.strip()  
             # return format_analysis_output(analysis_output)  
@@ -1301,7 +1301,7 @@ def prompt_llm_to_correct_amendments(amendments_output, application_text):
 
     # Call the LLM with the correction prompt  
     response = client.chat.completions.create(  
-        model="GPT-4-Omni",  
+        model="gpt-4o-mini",  
         messages=[  
             {"role": "system", "content": "You are an AI assistant helping to correct source references in patent amendments."},  
             {"role": "user", "content": correction_prompt}  
@@ -1490,7 +1490,7 @@ def analyze_modified_application(filed_app_details_json, cited_references_text, 
     try:  
 
         response = client.chat.completions.create(  
-            model="GPT-4-Omni", messages=messages, temperature=0.7  
+            model="gpt-4o-mini", messages=messages, temperature=0.7  
         )  
         analysis_output = response.choices[0].message.content.strip()  
           
@@ -1838,7 +1838,7 @@ def check_match_with_llm(text, cited_docs):
         #     return False
 
         response = client.chat.completions.create(  
-            model="GPT-4-Omni",  
+            model="gpt-4o-mini",  
             messages=messages,  
             temperature=0.2
         )  
