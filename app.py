@@ -90,7 +90,7 @@ azure_endpoint = st.secrets["AZURE_OPENAI_ENDPOINT"]
 api_key = st.secrets["AZURE_OPENAI_API_KEY"]
 
 api_version = "2024-10-01-preview"
-model = "GPT-4o-mini" 
+model = "gpt-4o-mini" 
 
 client = AzureOpenAI(  
     azure_endpoint=azure_endpoint,  # Pull from environment  
@@ -236,7 +236,7 @@ def summarize_text(processed_text):
         
         # Call OpenAI API for summarization  
         response = client.chat.completions.create(  
-            model="GPT-4-Omni", messages=messages, temperature=0.5  
+            model="gpt-4o-mini", messages=messages, temperature=0.5  
         )  
   
         # Extract the content from the response  
@@ -293,7 +293,7 @@ def determine_domain_expertise(action_document_text):
   
         # Call OpenAI API for domain expertise determination  
         response = client.chat.completions.create(  
-            model="gpt-4o", messages=messages, temperature=0.6  
+            model="gpt-4o-mini", messages=messages, temperature=0.6  
         )  
   
         # Extract the content from the response  
