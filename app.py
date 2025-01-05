@@ -118,27 +118,27 @@ class DomainExpertise(BaseModel):
 class FoundationalClaimDetails(BaseModel):  
     foundational_claim_details: list[dict]
 
-def get_tokenizer():  
-    # Replace with the correct model name if necessary  
-    model_name = "GPT-4o-mini"
-    return tiktoken.encoding_for_model(model_name) 
-tokenizer = get_tokenizer() 
+# def get_tokenizer():  
+#     # Replace with the correct model name if necessary  
+#     model_name = "GPT-4o-mini"
+#     return tiktoken.encoding_for_model(model_name) 
+# tokenizer = get_tokenizer() 
 
-def calculate_tokens(messages):    
-    """Calculate the number of tokens used by a list of messages."""  
-    encoding = tokenizer  
-    tokens_per_message = 3  # Every message follows <im_start>{role/name}\n{content}<im_end>\n  
-    tokens_per_name = 1  # If there's a name, the role is omitted  
+# def calculate_tokens(messages):    
+#     """Calculate the number of tokens used by a list of messages."""  
+#     encoding = tokenizer  
+#     tokens_per_message = 3  # Every message follows <im_start>{role/name}\n{content}<im_end>\n  
+#     tokens_per_name = 1  # If there's a name, the role is omitted  
 
-    total_tokens = 0  
-    for message in messages:  
-        total_tokens += tokens_per_message  
-        for key, value in message.items():  
-            total_tokens += len(encoding.encode(value))  
-            if key == 'name':  
-                total_tokens += tokens_per_name  
-    total_tokens += 1  # Every reply is primed with <im_start>assistant  
-    return total_tokens  
+#     total_tokens = 0  
+#     for message in messages:  
+#         total_tokens += tokens_per_message  
+#         for key, value in message.items():  
+#             total_tokens += len(encoding.encode(value))  
+#             if key == 'name':  
+#                 total_tokens += tokens_per_name  
+#     total_tokens += 1  # Every reply is primed with <im_start>assistant  
+#     return total_tokens  
 
 # Preprocessing function  
 def process_text(text):
@@ -227,8 +227,8 @@ def summarize_text(processed_text):
   
     try:  
         # Calculate and display tokens used for summarization  
-        tokens_used = calculate_tokens(messages)  
-        logging.info(f"Tokens used for summarization: {tokens_used}")  
+        # tokens_used = calculate_tokens(messages)  
+        # logging.info(f"Tokens used for summarization: {tokens_used}")  
         
         # if tokens_used>125000:
         #     st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
@@ -282,14 +282,14 @@ def determine_domain_expertise(action_document_text):
         {"role": "user", "content": prompt}  
     ] 
     # Calculate and display tokens used  
-    tokens_used = calculate_tokens(messages)  
-    logging.info(f"Tokens used in this API call: {tokens_used}") 
+    # tokens_used = calculate_tokens(messages)  
+    # logging.info(f"Tokens used in this API call: {tokens_used}") 
   
     try:
         
-        if tokens_used>125000:
-            st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
-            return None
+        # if tokens_used>125000:
+        #     st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
+        #     return None
   
         # Call OpenAI API for domain expertise determination  
         response = client.chat.completions.create(  
@@ -455,14 +455,14 @@ def check_for_conflicts(action_document_text, domain, expertise, style):
         {"role": "system", "content": content},  
         {"role": "user", "content": prompt},  
     ] 
-    # Calculate and display tokens used  
-    tokens_used = calculate_tokens(messages)  
-    logging.info(f"Tokens used in this API call: {tokens_used}") 
+    # # Calculate and display tokens used  
+    # tokens_used = calculate_tokens(messages)  
+    # logging.info(f"Tokens used in this API call: {tokens_used}") 
   
     try:  
-        if tokens_used>125000:
-            st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
-            return None
+        # if tokens_used>125000:
+        #     st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
+        #     return None
 
         response = call_api_with_retries(messages)  
         content = response.choices[0].message.content.strip()  
@@ -590,8 +590,8 @@ def extract_figures_and_text(conflict_results, ref_documents_texts, domain, expe
         {"role": "user", "content": figure_analysis_prompt},  
     ] 
     # Calculate and display tokens used  
-    tokens_used = calculate_tokens(messages)  
-    logging.info(f"Tokens used in this API call: {tokens_used}") 
+    # tokens_used = calculate_tokens(messages)  
+    # logging.info(f"Tokens used in this API call: {tokens_used}") 
   
     analysis_output = call_llm_api(messages)  
     return parse_and_validate_json(analysis_output) 
@@ -672,14 +672,14 @@ def extract_details_from_filed_application(filed_application_text, foundational_
         {"role": "user", "content": prompt},  
     ]  
     # Calculate and display tokens used  
-    tokens_used = calculate_tokens(messages)  
-    logging.info(f"Tokens used in this API call: {tokens_used}")
+    # tokens_used = calculate_tokens(messages)  
+    # logging.info(f"Tokens used in this API call: {tokens_used}")
   
     try:  
         
-        if tokens_used>125000:
-            st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
-            return None
+        # if tokens_used>125000:
+        #     st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
+        #     return None
 
         response = client.chat.completions.create(  
             model="GPT-4-Omni", messages=messages, temperature=0.2  
@@ -1062,9 +1062,9 @@ def analyze_filed_application(extracted_details, foundational_claim, dependent_c
         {"role": "assistant", "content": few_shot_example},  
         {"role": "assistant", "content": text_a},  
     ] 
-    # Calculate and display tokens used  
-    tokens_used = calculate_tokens(messages)  
-    logging.info(f"Tokens used in this API call: {tokens_used}") 
+    # # Calculate and display tokens used  
+    # tokens_used = calculate_tokens(messages)  
+    # logging.info(f"Tokens used in this API call: {tokens_used}") 
   
     base_delay = 1  
     max_delay = 32  
@@ -1830,12 +1830,12 @@ def check_match_with_llm(text, cited_docs):
     ]  
   
     try:  
-        tokens_used = calculate_tokens(messages)  
-        logging.info(f"Tokens used in this API call: {tokens_used}") 
+        # tokens_used = calculate_tokens(messages)  
+        # logging.info(f"Tokens used in this API call: {tokens_used}") 
 
-        if tokens_used>125000:
-            st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
-            return False
+        # if tokens_used>125000:
+        #     st.warning('Document contents so far is too large to query not processing documents further. Results may be inaccurate, consider uploading smaller documents. .', icon="⚠️") 
+        #     return False
 
         response = client.chat.completions.create(  
             model="GPT-4-Omni",  
@@ -1883,10 +1883,10 @@ if 'application_number' not in st.session_state:
 st.image("AFS Innovation Logo.png", width=200)  
 st.title("Patent Analyzer")  
   
-def count_tokens(text, model="GPT-4-Omni"):
-    encoding = tiktoken.encoding_for_model(model)
-    tokens = encoding.encode(text)
-    return len(tokens)
+# def count_tokens(text, model="GPT-4-Omni"):
+#     encoding = tiktoken.encoding_for_model(model)
+#     tokens = encoding.encode(text)
+#     return len(tokens)
 
 # Step 1: Upload Examiner Document and Check Conflicts  
 with st.expander("Step 1: Office Action", expanded=True):  
