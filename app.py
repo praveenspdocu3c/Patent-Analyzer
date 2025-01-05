@@ -86,8 +86,8 @@ style_tone_voice = "default style"
 
 azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 api_key = os.getenv("AZURE_OPENAI_API_KEY")
-api_version = "2024-02-01"
-model = "GPT-4o-mini"
+api_version = "2024-10-01-preview"
+model = "GPT-4o-mini" 
 
 client = AzureOpenAI(  
     azure_endpoint=azure_endpoint,  # Pull from environment  
@@ -117,7 +117,7 @@ class FoundationalClaimDetails(BaseModel):
 
 def get_tokenizer():  
     # Replace with the correct model name if necessary  
-    model_name = "gpt-4o-mini" 
+    model_name = "GPT-4o-mini"
     return tiktoken.encoding_for_model(model_name) 
 tokenizer = get_tokenizer() 
 
