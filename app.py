@@ -293,7 +293,7 @@ def determine_domain_expertise(action_document_text):
   
         # Call OpenAI API for domain expertise determination  
         response = client.chat.completions.create(  
-            model="GPT-4-Omni", messages=messages, temperature=0.6  
+            model="gpt-4o", messages=messages, temperature=0.6  
         )  
   
         # Extract the content from the response  
