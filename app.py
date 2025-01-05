@@ -28,8 +28,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH   # type: ignore
 from azure.storage.blob import BlobServiceClient  # type: ignore
 import tiktoken  
   
-# Define your connection string and container name  
-connection_string = "DefaultEndpointsProtocol=https;AccountName=patent1;AccountKey=ME5v95i9pip/670ZodU1zFZ9uHHLbI1N4yUv4fJm64vqfytww6bvfpC6v6wchWbhgDLYNO3xD19J+ASt5sLkKw==;EndpointSuffix=core.windows.net"  
+# Define your connection string and container name   
+connection_string = st.secrets["CONNECTION_STRING"]  
 container_name = "patent"  
   
 # Initialize the BlobServiceClient  
