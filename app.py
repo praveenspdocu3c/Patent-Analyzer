@@ -84,8 +84,11 @@ experience_expertise_qualifications = "default qualifications"
 style_tone_voice = "default style"
 
 
-azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-api_key = os.getenv("AZURE_OPENAI_API_KEY")
+# azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+# api_key = os.getenv("AZURE_OPENAI_API_KEY")
+azure_endpoint = st.secrets["AZURE_OPENAI_ENDPOINT"]  
+api_key = st.secrets["AZURE_OPENAI_API_KEY"]
+
 api_version = "2024-10-01-preview"
 model = "GPT-4o-mini" 
 
